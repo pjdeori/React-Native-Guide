@@ -46,7 +46,6 @@ A concise guide for setting up the React Native development environment and proj
 
 ## Version Checks
 *Reboot before checking to update registry*  
-
 Git bash CLI commands for version checking:
 
 ```bash
@@ -121,3 +120,87 @@ After clearing caches, open `Android Studio`.
 7. Click `Ok`, which will proceed to installation.
 
 *Repeat Steps 1 to 7 if installation fails due to 'Connection Reset'*
+
+## Wireless ADB
+### Requirements
+- Android 11 or higher
+- Phone and computer on the same Wi-Fi network
+
+### Enable Developer Options
+1. Open `Settings`
+2. Go to `About phone`
+3. Tap `Build numbe`r 7 times
+4. Toast notification will appear 'You are now a developer'
+
+### Enable Wireless Debugging
+1. Go to Settings → Developer options
+2. Turn on Wireless debugging
+3. Tap Wireless debugging
+
+### Pair the Device
+1. Tap `Pair device with pairing code`
+2. A popup will show:
+    - IP address
+    - Pairing port
+    - Pairing code
+3. On computer, run:
+```bash
+adb pair <phone-ip>:<pairing-port>
+```
+
+### Connect via ADB
+After pairing, the phone will show an ADB port.  
+Note: `adb-port` is not the same as `pairing-port` 
+```bash
+adb connect <phone-ip>:<adb-port>
+```
+Verify connection:
+```bash
+adb devices
+```
+
+
+## Getting Started
+<!-- ### Project Structure -->
+<!-- ### Components -->
+<!-- ### Styling -->
+<!-- ### Screens -->
+### Navigation
+Install:
+```bash
+npm install @react-navigation/native @react-navigation/native-stack
+```
+```bash
+npm install react-native-screens react-native-safe-area-context
+```
+Usage:
+```tsx
+// App.tsx
+import * as React from 'react';
+import {createStaticNavigation} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+// screen imports
+import screenOne from './src/screens/screenOne';
+import screenTwo from './src/screens/screenTwo';
+
+const RootStack = createNativeStackNavigator({
+  screens: {
+    screenOne: {
+      screen: screenOne,
+    },
+    screenTwo: {
+      screen: screenTwo,
+    },
+  },
+});
+
+const Navigation = createStaticNavigation(RootStack);
+
+export default function App() {
+  return (
+    <Navigation/>
+  );
+}
+```
+
