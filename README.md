@@ -1,8 +1,9 @@
 # React Native Guide
-Basic guide for setting up `React Native` `environment` and `project`, with few known problem debugging.
+## Overview
+A concise guide for setting up the React Native development environment and project, including solutions for common issues.
 
 ## Environment Versions:
-*These are the versions that are tested on during the making of this guide.*
+*These versions were used and tested during the development of this guide.*
 
 - windows 11 x64
 - node-v25.2.1-x64
