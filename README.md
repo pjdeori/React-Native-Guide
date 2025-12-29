@@ -2,28 +2,51 @@
 ## Overview
 A concise guide for setting up the React Native development environment and project, including solutions for common issues.
 
-## Environment Versions:
-*These versions were used and tested during the development of this guide.*
+## Table of Contents
+- [Set Up Environment](#set-up-environment)
+  - [Install Node.js](#install-nodejs)
+  - [Install JDk](#install-jdk)
+  - [Install Android Studio](#install-android-studio)
+- [Initiallize React Native Project](#initiallize-react-native-project)
+  - [Install NDK](#ndk-manual-install)
+- [Wireless ADB](#wireless-adb)
+## Set Up Environment
+### Install [Node.js](https://nodejs.org/en/download/current)
+*Versions used and tested during the development of this guide:*  
+- **node-v25.2.1-x64**  
+- **npm-v11.6.2**  
 
-- windows 11 x64
-- node-v25.2.1-x64
-- jdk-17.0.12_windows-x64
-- android-studio-2025.2.2.8-windows
-- android sdk versions: 
+Verify installation in Git Bash CLI:
+```bash
+node -v # output: v25.2.1
+```
+```bash
+npm -v # output: 11.6.2
+```
+
+### Install [JDK](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+*Versions used and tested during the development of this guide:*  
+**jdk-17.0.12_windows-x64**  
+
+Verify installation in Git Bash CLI:
+```bash
+java -version
+```
+```bash
+javac -version
+```
+
+### Install [Android Studio](https://developer.android.com/studio)
+*Versions used and tested during the development of this guide:*  
+- **android-studio-2025.2.2.8-windows**
+- **android sdk**: 
     - 36.1.0
     - 36.0.0
     - 35.0.0
-- ndk (side-by-side):
+- **ndk(side-by-side)**:
     - 27.1.12297006
 
-## Environment Setup 
-### 1. Install [Node.js](https://nodejs.org/en/download/current)
-
-### 2. Install [JDK 17.0.12](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-
-### 3. Install [Android Studio](https://developer.android.com/studio)
-
-#### Configure the ANDROID_HOME environment variable:
+#### Configure the `ANDROID_HOME` environment variable:
 1. Open `Control Panel`.
 2. Click on `User Accounts`, then click `User Accounts` again.
 3. Click on `Change my environment variables`.
@@ -32,7 +55,7 @@ A concise guide for setting up the React Native development environment and proj
 ``` 
 %LOCALAPPDATA%\Android\Sdk 
 ```
-#### Add platform-tools to Path:
+#### Add `platform-tools` to Path:
 1. Open `Control Panel`.
 2. Click on `User Accounts`, then click `User Accounts` again.
 3. Click on `Change my environment variables`.
@@ -42,42 +65,24 @@ A concise guide for setting up the React Native development environment and proj
 7. Add to list the path to `platform-tools`:
 ```
 %LOCALAPPDATA%\Android\Sdk\platform-tools
-```
+```  
 
-## Version Checks
-*Reboot before checking to update registry*  
-Git bash CLI commands for version checking:
-
-```bash
-node -v
-```
-```bash
-npm -v
-```
-```bash
-java -version
-```
-```bash
-javac -version
-```
+Verify installation in Git Bash CLI:
 ```bash
 echo $ANDROID_HOME
 ```
-If all CLI commands return a version or path, the installations and environment variables are correctly set.
-
-
-## Setup React Native Project
-Remove previously installed global react-native-cli package(known to cause unexpected issues):
+## Initiallize React Native Project
+#### Remove previously installed global react-native-cli package(known to cause unexpected issues):
 ```bash
 npm uninstall -g react-native-cli @react-native-community/cli
 ```
 
-Create new Project
+#### Create new Project
 ```bash
 npx @react-native-community/cli@latest init quicksend
 ```
 
-Run Project
+#### Run Project
 ```bash
 npm run android
 ```
@@ -87,7 +92,7 @@ npm run android
 - Rebuild errors can occur due to corrupted caches, particularly during the installation of NDK.  
 
 
-### NDK(Side by side) Manual Install:
+### NDK Manual Install:
 If errors such as
 - 'NDK at did not have a source.properties file'
 - 'An error occurred while preparing SDK package NDK (Side by side) 27.1.12297006: Not in GZIP format.'  
