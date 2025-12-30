@@ -20,9 +20,6 @@ Verify installation in Git Bash CLI:
 ```bash
 node -v # output: v25.2.1
 ```
-```bash
-npm -v # output: 11.6.2
-```
 
 ### Install [JDK](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 *Versions used and tested during the development of this guide:*  
@@ -72,21 +69,21 @@ Verify installation in Git Bash CLI:
 echo $ANDROID_HOME
 ```
 ## Initiallize React Native Project
-#### Remove previously installed global react-native-cli package(known to cause unexpected issues):
+Remove previously installed global react-native-cli package(known to cause unexpected issues):
 ```bash
 npm uninstall -g react-native-cli @react-native-community/cli
 ```
 
-#### Create new Project
+Create new Project
 ```bash
-npx @react-native-community/cli@latest init quicksend
+npx @react-native-community/cli@latest init react_native
 ```
 
-#### Run Project
+Run Project
 ```bash
 npm run android
 ```
-**Important**
+Important
 - First run downloads dependencies, including NDK.
 - Connection drops may cause errors.
 - Rebuild errors can occur due to corrupted caches, particularly during the installation of NDK.  
@@ -99,15 +96,16 @@ If errors such as
 
 Clear corrupt caches by deleting these folder in their respective paths:  
 
-- `.downloadIntermediates`
+`.downloadIntermediates`
 ```
 %LOCALAPPDATA%\Android\Sdk\.downloadIntermediates
 ```
-- `.temp`
+
+`.temp`
 ```
 %LOCALAPPDATA%\Android\Sdk\.temp
 ```
-- `27.1.12297006`
+`27.1.12297006`
 ```
 %LOCALAPPDATA%\Local\Android\Sdk\ndk\27.1.12297006
 ```
@@ -127,9 +125,9 @@ After clearing caches, open `Android Studio`.
 *Repeat Steps 1 to 7 if installation fails due to 'Connection Reset'*
 
 ## Wireless ADB
-### Requirements
+Requirements:
 - Android 11 or higher
-- Phone and computer on the same Wi-Fi network
+- Devices on the same Wi-Fi network
 
 ### Enable Developer Options
 1. Open `Settings`
@@ -164,14 +162,44 @@ Verify connection:
 adb devices
 ```
 
-
 ## Getting Started
-<!-- ### Project Structure -->
-<!-- ### Components -->
-<!-- ### Styling -->
-<!-- ### Screens -->
+### Project Structure
+```
+src/
+├── components/ 
+└── screens/
+App.tsx
+```
+### Components
+```tsx
+import { Text, View } from "react-native";
+
+export default function Component(){
+    return(
+        <View>
+            <Text>
+                Component is Rendering
+            </Text>
+        </View>
+    )
+}
+```
+
+### Screens
+```tsx
+import { View } from "react-native";
+import Component from "../components/ComponentOne";
+
+export default function Screen(){
+    return(
+        <View>
+            <Component></Component>
+        </View>
+    )
+}
+```
 ### Navigation
-Install:
+Install Dependencies:
 ```bash
 npm install @react-navigation/native @react-navigation/native-stack
 ```
@@ -208,4 +236,6 @@ export default function App() {
   );
 }
 ```
+<!-- ### Styling -->
+<!-- Storage -->
 
