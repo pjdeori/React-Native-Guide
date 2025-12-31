@@ -166,7 +166,10 @@ adb devices
 ### Project Structure
 ```
 src/
-├── components/ 
+├── navigation/ 
+├── ├── RootNavigator.tsx
+├── └── types.ts
+├── components/
 └── screens/
 App.tsx
 ```
@@ -188,7 +191,7 @@ export default function Component(){
 ### Screens
 ```tsx
 import { View } from "react-native";
-import Component from "../components/ComponentOne";
+import Component from "../components/Component";
 
 export default function Screen(){
     return(
@@ -207,32 +210,48 @@ npm install @react-navigation/native @react-navigation/native-stack
 npm install react-native-screens react-native-safe-area-context
 ```
 Usage:
+```ts
+// types.ts
+export type RootStackParamList = {
+  ScreenOne: undefined;
+  ScreenTwo: undefined;
+};
+```
+
+```tsx
+// RootNavigator.ts
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ScreenOne from '../screens/ScreenOne';
+import ScreenTwo from '../screens/ScreenTwo';
+import { RootStackParamList } from './types';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export default function RootNavigator() {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="ScreenOne" component={ScreenOne} />
+      <Stack.Screen name="ScreenTwo" component={ScreenTwo} />
+    </Stack.Navigator>
+  );
+}
+```
+
 ```tsx
 // App.tsx
-import * as React from 'react';
-import {createStaticNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-// screen imports
-import screenOne from './src/screens/screenOne';
-import screenTwo from './src/screens/screenTwo';
-
-const RootStack = createNativeStackNavigator({
-  screens: {
-    screenOne: {
-      screen: screenOne,
-    },
-    screenTwo: {
-      screen: screenTwo,
-    },
-  },
-});
-
-const Navigation = createStaticNavigation(RootStack);
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App() {
   return (
-    <Navigation/>
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
   );
 }
 ```
