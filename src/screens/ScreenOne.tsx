@@ -1,11 +1,12 @@
-import { Text, View } from "react-native";
-import Component from "../components/Component";
+import { Button, Text, View } from "react-native";
 
-export default function ScreenOne(){
-    return(
+export default function ScreenOne({navigation}:any) {
+    return (
         <View>
-            <Text>Screen One</Text>
-            <Component></Component>
+            <Text>Screen Content</Text>
+            <Button
+                title="Goto Screen Two"
+                onPress={() => {navigation.navigate('ScreenTwo')}} />
         </View>
     )
 }
